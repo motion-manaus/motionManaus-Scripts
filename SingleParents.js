@@ -16,6 +16,9 @@ if (comp === null || !(comp instanceof CompItem)) {
       // Set the null layer's position to the center of the composition
       nullLayer.transform.position.setValue([comp.width/2, comp.height/2]);
       
+      // Name the null layer after the selected layer
+      nullLayer.name = selectedLayers[i].name + "_n";
+      
       // Parent the selected layer to the null layer
       selectedLayers[i].parent = nullLayer;
     }
