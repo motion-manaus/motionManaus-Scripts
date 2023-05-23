@@ -16,6 +16,7 @@ if (comp === null || !(comp instanceof CompItem)) {
 			if (selectedLayers[i].parent !== null) {
 				// Parent the created null layer to the selected layer's parent
 				var nullLayer = comp.layers.addNull();
+                                nullLayer.index = selectedLayer[i]+1
 				nullLayer.transform.position.setValue([comp.width / 2, comp.height / 2]);
 				nullLayer.name = selectedLayers[i].name + "_n";
 				nullLayer.parent = selectedLayers[i].parent;
@@ -23,6 +24,7 @@ if (comp === null || !(comp instanceof CompItem)) {
 			} else {
 				// Create a null layer and parent the selected layer to it
 				var nullLayer = comp.layers.addNull();
+				nullLayer.index = selectedLayer[i]+1
 				nullLayer.transform.position.setValue([comp.width / 2, comp.height / 2]);
 				nullLayer.name = selectedLayers[i].name + "_n";
 				selectedLayers[i].parent = nullLayer;
