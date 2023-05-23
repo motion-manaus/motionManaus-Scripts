@@ -1,26 +1,34 @@
+app.beginUndoGroup("Single Parent");
+
 // Get the active composition
 var comp = app.project.activeItem;
 if (comp === null || !(comp instanceof CompItem)) {
-  alert("Please select a composition.");
+	alert("Please select a composition.");
 } else {
-  // Get the selected layers
-  var selectedLayers = comp.selectedLayers;
-  if (selectedLayers.length === 0) {
-    alert("Please select at least one layer.");
-  } else {
-    // Loop through the selected layers
-    for (var i = 0; i < selectedLayers.length; i++) {
-      // Create a null layer
-      var nullLayer = comp.layers.addNull();
-      
-      // Set the null layer's position to the center of the composition
-      nullLayer.transform.position.setValue([comp.width/2, comp.height/2]);
-      
-      // Name the null layer after the selected layer
-      nullLayer.name = selectedLayers[i].name + "_n";
-      
-      // Parent the selected layer to the null layer
-      selectedLayers[i].parent = nullLayer;
-    }
-  }
+	// Get the selected layers
+	var selectedLayers = comp.selectedLayers;
+	if (selectedLayers.length === 0) {
+		alert("Please select at least one layer.");
+	} else {
+		// Loop through the selected layers
+		for (var i = 0; i < selectedLayers.length; i++) {
+			// Check if the selected layer already has a parent
+			if (selectedLayers[i].parent !== null) {
+				// Parent the created null layer to the selected layer's parent
+				var nullLayer = comp.layers.addNull();
+				nullLayer.transform.position.setValue([comp.width / 2, comp.height / 2]);
+				nullLayer.name = selectedLayers[i].name + "_n";
+				nullLayer.parent = selectedLayers[i].parent;
+				selectedLayers[i].parent = nullLayer;
+			} else {
+				// Create a null layer and parent the selected layer to it
+				var nullLayer = comp.layers.addNull();
+				nullLayer.transform.position.setValue([comp.width / 2, comp.height / 2]);
+				nullLayer.name = selectedLayers[i].name + "_n";
+				selectedLayers[i].parent = nullLayer;
+			}
+		}
+	}
 }
+
+app.endUndoGroup();
