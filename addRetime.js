@@ -67,7 +67,4 @@ if (!reMasterLayer) {
     // Use the existing null "re_master" layer
     nullLayer = reMasterLayer;
 }
-
-// Deselect all layers and properties
-app.project.activeItem.selectedLayers = [];
-app.project.activeItem.selectedProperties = [];
+app.endUndoGroup();
