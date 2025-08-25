@@ -1,5 +1,6 @@
 {
     // 9x16 Instagram Title Safe Area Script
+    // by motionmanaus.com
     // Creates or imports a title safe area composition for Instagram stories/reels
     
     function createTitleSafeAreaScript() {
@@ -8,7 +9,7 @@
         var compName = "9x16-IG-Title Safe Area";
         var compWidth = 1080;
         var compHeight = 1920;
-        var compDuration = 60; // 60 seconds
+        var compDuration = 10; // 10 seconds
         var compFrameRate = 30;
         
         // Check if we already have this composition
@@ -38,7 +39,7 @@
             var guideLayer = activeComp.layers.add(titleSafeComp, compDuration);
             guideLayer.moveToBeginning(); // Move to index 1
             guideLayer.guideLayer = true; // Set as guide layer
-            guideLayer.name = "IG-Title Safe Area Guide";
+            guideLayer.name = "Title Safe Area Guide";
             
             alert("Title Safe Area added as guide layer to '" + activeComp.name + "'");
         } else if (!activeComp) {
@@ -134,7 +135,7 @@
         
         // Lock all layers to prevent accidental changes
         for (var j = 1; j <= comp.numLayers; j++) {
-            comp.layer(j).locked = false;
+            comp.layer(j).locked = true;
         }
     }
     
