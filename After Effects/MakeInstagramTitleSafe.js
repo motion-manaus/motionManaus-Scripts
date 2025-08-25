@@ -38,7 +38,7 @@
             var guideLayer = activeComp.layers.add(titleSafeComp, compDuration);
             guideLayer.moveToBeginning(); // Move to index 1
             guideLayer.guideLayer = true; // Set as guide layer
-            guideLayer.name = "Title Safe Area Guide";
+            guideLayer.name = "IG-Title Safe Area Guide";
             
             alert("Title Safe Area added as guide layer to '" + activeComp.name + "'");
         } else if (!activeComp) {
